@@ -1,0 +1,231 @@
+\documentclass[a4paper,oneside,12pt]{book}
+%----------------------------------------------------------------------------------------
+%	WELCOME!
+%   It's probably worth having a read through this file to set up the broad parameters.
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	COVER PAGE
+%   The cover page is laid out in title/title.tex. You can choose a colour
+%   or black and white logo
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	THESIS INFORMATION
+%   Put title, author name, degree, type of work, school, department in here
+%   It will be used for the title page and for the embedded PDF information
+%----------------------------------------------------------------------------------------
+\newcommand\YUGE{\fontsize{70}{84}\selectfont}
+%\newcommand{\thesistitle}{EVEREST} % Your thesis title, this is used in the title and abstract
+%\newcommand{\subtitlethesis}{Earth Visco-Elastic anisotRopic propErties SimulaTor} %
+%\newcommand{\subtitlethesis}{Exploring Visco-Elastic anisotRopiES in the manTle} %
+\newcommand{\thesistitle}{\textbf{ECOMAN}} % Your thesis title, this is used in the title and abstract
+%\newcommand{\subtitlethesis}{Earth Visco-Elastic anisotRopic propErties SimulaTor} %
+\newcommand{\subtitlethesis}{Exploring the COnsequences of Mechanical \\Anisotropy in the maNtle} %
+\newcommand{\typeofthesis}{User Manual - Version 2.0} % dissertation, Final Year Project, report, etc.
+%\author[1]{Manuele Faccenda (\href{mailto:manuele.faccenda@unipd.it} {manuele.faccenda@unipd.it})}
+%\author[2]{Brandon P. VanderBeek (\href{mailto:brandonpaul.vanderbeek@unipd.it} {brandonpaul.vanderbeek@unipd.it})}
+\newcommand{\authorname}{Manuele Faccenda (\href{mailto:manuele.faccenda@unipd.it} {manuele.faccenda@unipd.it}) \\ 
+Brandon P. VanderBeek (\href{mailto:brandonpaul.vanderbeek@unipd.it} {brandonpaul.vanderbeek@unipd.it}) \\
+Albert de Montserrat Navarro \\
+Jianfeng Yang} 
+% Your name, this is used in the title page and PDF stuff
+
+%% Comment out the next line if you don't want your ID to appear
+%\newcommand{\keywords}{this, that, more} % Keywords for your thesis
+\newcommand{\school}{\href{https://www.unipd.it/}{Università degli Studi di Padova}} % Your school's name and URL, this is used in the title page
+\newcommand{\department}{\href{https://www.geoscienze.unipd.it/}{Dipartimento di Geoscienze}}
+%% Comment out the next line if you don't want a department to appear
+%\newcommand{\department}{\href{http://researchgroup.university.com}{Department Name}} % Your research group's name and URL, this is used in the title page
+
+\newcommand{\drexstitle}{\textbf{D-REX\_S}}
+\newcommand{\drexmtitle}{\textbf{D-REX\_M}}
+\newcommand{\demtitle}{\textbf{DEM}}
+\newcommand{\viztomotitle}{\textbf{VIZTOMO}}
+\newcommand{\vizvisctitle}{\textbf{VIZVISC}}
+\newcommand{\skstitle}{\textbf{SKS-SPLIT}}
+\newcommand{\psitomotitle}{\textbf{PSI\_D}}
+\newcommand{\juliatitle}{\textbf{Julia}}
+\newcommand{\cookbookstitle}{COOKBOOKS}
+\newcommand{\exevtitle}{\textbf{EXEV}}
+\newcommand{\demelastictitle}{\textbf{DEMelastic}}
+\newcommand{\demviscoustitle}{\textbf{DEMviscous}}
+\newcommand{\paraviewtitle}{\textbf{ParaView}}
+\newcommand{\mmaeostitle}{\textbf{MMA\_EoS}}
+\newcommand{\matlabtitle}{\textbf{MATLAB}}
+\newcommand{\cijkltitle}{\texttt{Cijkl$*$.h5}}
+\newcommand{\vtptitle}{\texttt{vtp$*$.h5}}
+\newcommand{\fonts}[1]{\textbf{\texttt{#1}}}
+\AtBeginDocument{
+\hypersetup{pdftitle=\thesistitle} % Set the PDF's title to your title
+\hypersetup{pdfauthor=\authorname} % Set the PDF's author to your name
+%\hypersetup{pdfkeywords=\keywords} % Set the PDF's keywords to your keywords
+%\hypersetup{pdfsubject=\degree} % Set the PDF's keywords to your keywords
+}
+
+%% Language and font encodings
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{authblk}
+%% Bibliographical stuff
+\usepackage[authoryear,sort]{natbib}
+
+%% Document size
+% include showframe as an option if you want to see the boxes
+\usepackage[a4paper,top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm,headheight=16pt]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{siunitx}
+\usepackage{fix-cm}
+\usepackage[autostyle=true]{csquotes} % Required to generate language-dependent quotes in the bibliography
+\usepackage[pdftex]{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage{caption} % if no caption, no colon
+%\usepackage{sfmath} %use sans-serif in the maths sections too
+\usepackage[parfill]{parskip}    % Begin paragraphs with an empty line rather than an indent
+\usepackage{setspace} % to permit one-and-a-half or double spacing
+\usepackage{enumerate} % fancy enumerations like (i) (ii) or (a) (b) and suchlike
+\usepackage{booktabs} % To thicken table lines
+\usepackage{fancyhdr}
+\usepackage{pdflscape} 
+\usepackage{tabularx}
+\usepackage{tabu}
+\usepackage{tablefootnote}
+\usepackage{adjustbox}
+\usepackage{multicol}
+\usepackage{tcolorbox}
+\pagestyle{plain} % Embrace simplicity!
+
+%% The Mechanical engineers require your name and ID on the top of every page.
+%% Uncomment the following block if you want your name and ID at the top of
+%% (almost) every page.
+
+%\pagestyle{fancy}
+%\fancyhf{} % sets both header and footer to nothing
+%\renewcommand{\headrulewidth}{0pt}
+%\cfoot{\thepage}
+%\ifdefined\authorid
+%\chead{\it \authorname\ (\authorid)}
+%\else
+%\chead{\it \authorname}
+%\fi
+%% End of block
+
+%% It is not a requirement of the university that the font should be sans-serif, but
+%% the Mechanical engineers require it. Comment out the following line to disable it
+%\renewcommand{\familydefault}{\sfdefault} %use the sans-serif font as default
+
+%% If you're not using sans-serif, consider using Palatino instead of the LaTeX standard
+
+\usepackage{mathpazo} % Use the Palatino font by default if you prefer it to Computer Modern
+\usepackage{courier}
+
+\renewcommand{\theequation}{\arabic{equation}} %% use continuous equation numbers
+
+%% Format Chapter headings appropriately
+\usepackage{titlesec}
+\titleformat{\chapter}[hang] 
+{\normalfont\huge\bfseries}{\thechapter}{1.0cm}
+{\parbox[t]{\dimexpr\textwidth-3em\relax}}
+{} 
+
+\title{\thesistitle}
+\author{\authorname}
+
+\setlength{\marginparwidth}{2cm}
+\frontmatter
+
+\begin{document}
+\input{title/title.tex}
+\pagenumbering{roman}
+
+\newpage
+\onehalfspacing%\raggedright %\raggedright turns off justification and hypenation
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+\newpage
+\section*{\Huge{Font styles}}
+Throughout the manual, we have done our best to use different font styles indicating:
+\begin{itemize}
+    \item text
+    \item \textbf{SOFTWARE} 
+    \item \texttt{files, folders, URL links, commands}
+    \item \fonts{variables present within the codes}
+    \item \textbf{scalar, vectors, $2^{nd}$ and $4^{th}$ order tensors}
+\end{itemize}
+
+\newpage
+
+\section*{\Huge{Nomenclature}}
+Here we provide explanations for the different symbols, acronyms and variables found in this guide.
+
+\begin{table}[ht!]
+\small
+\begin{tabular}{lp{11cm}l}
+\\
+\hline
+Abbreviation&Description&Units\\
+\hline
+UM&Upper mantle\\
+MTZ&Mantle Transition zone\\
+UTZ&Upper Transition zone\\
+LTZ&Lower Transition zone\\
+LM&Lower Mantle\\
+LPO&Lattice Preferred Orientation\\
+SPO&Shape Preferred Orientation\\
+\\
+fse\textsubscript{max},fse\textsubscript{min}&maximum, minimum semiaxis of the FSE&$1$\\
+ln\textsubscript{fse},ln\textsubscript{fse NODE}&natural logarithm of the ratio between the major and minor semiaxes of the FSE computed for an aggregate or a node of the Eulerian grid&$1$\\
+$Vp_{max},Vp_{min}$&maximum, minimum P-wave velocity&$m/s$\\
+$Vp_{anis}$&P-wave anisotropy&$\%$\\
+$Vs_{1},Vs_2$&fast and slow S-wave components after splitting&$m/s$\\
+$dVs_{MAX}$&maximum velocity difference between the fast and slow S-wave components&$\%$\\
+$V_{SH},V_{SV}$&azimuthally averaged velocity of the S-wave polarized in the horizontal and vertical planes&$m/s$\\
+$\xi$&radial anisotropy&1,$\%$\\
+$G$&azimuthal anisotropy&1,$\%$\\
+$\psi$&porosity&$1$\\
+\\
+P&Pressure &$Pa$\\
+Tk&Temperature &$K$\\
+Fd&Fraction of dislocation creep deformation &$1$\\
+\textbf{V},V\textsubscript{i}&Velocity vector and its components&$m/s$\\
+\textbf{D},D\textsubscript{ij}&$2^{nd}$ order velocity gradient tensor and its components&$s^{-1}$\\
+\textbf{F},F\textsubscript{ij}&$2^{nd}$ order deformation gradient tensor and its components&$1$\\
+\textbf{FSE} &$2^{nd}$ order left stretch tensor, whose eigenvalues and eigenvectors describe the Finite Strain Ellipsoid &$1$\\
+\textbf{C},C\textsubscript{$\alpha\beta$}&$4^{th}$ order elastic tensor and its components in Voigt notation&$GPa$\\
+%C\textsubscript{$\alpha\beta$}&Components of the $2^{nd}$ order elastic tensor in Voigt notation&$GPa$\\
+\pmb{$\eta$},$\eta_{\alpha\beta}$&$4^{th}$ order normalized viscous tensor and its components in Voigt notation&$1$\\
+%$\eta_{\alpha\beta}$&Components of the $2^{nd}$ order normalized viscous tensor in Voigt notation&$1$\\
+\\
+\hline
+\end{tabular}
+\end{table}
+
+%\vspace{0.5cm}
+
+The units on the rightmost column define variables when dimensional.
+
+\mainmatter
+\input{introduction/introduction.tex}
+\input{installation/installation.tex}
+\input{DREX_S/drex_s.tex}
+\input{DREX_M/drex_m.tex}
+\input{EXEV/exev}
+\input{VIZTOMO/viztomo.tex}
+\input{SKS-SPLIT/sks.tex}
+\input{PSI_D/psi_d.tex}
+\input{cookbooks/cookbooks}
+\bibliographystyle{abbrvnat}
+\bibliography{bibs/sample}
+\appendix
+\renewcommand{\thechapter}{A\arabic{chapter}}
+\input{appendix/appendix.tex}
+
+
+\end{document}

@@ -1,0 +1,72 @@
+\chapter{Installation and compilation}
+\label{chapter:installation}
+
+Software included in the \thesistitle{} package run with the following compilers, libraries and software (see Table \ref{table:compile}):
+
+\begin{itemize}
+    \item Intel Fortran90 compiler
+    \item Intel OpenMP, MPI compiler
+    \item HDF5
+    \item \paraviewtitle{} (version  5.4 or higher; \url{https://www.paraview.org/download/})
+    \item \matlabtitle{} (version  R2018b or higher)
+    \item \juliatitle{} (tested version 1.7.x - 1.9.x)
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{table}[h!]
+\centering
+\caption{\raggedright Required compilers and software for execution and visualization}
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{|m{0.30\textwidth}|m{0.38\textwidth}|m{0.32\textwidth}|} 
+
+\hline
+\textbf{Software}	& \textbf{Compilers/Libraries/Software}	& \textbf{Visualization Software} \\ [1ex] 
+\hline\hline
+
+\drexstitle{} & Intel F90, HDF5 & \matlabtitle{} (MTEX toolbox, version 5.* or higher) \\[1ex]\hline
+
+\drexmtitle{} & Intel F90/OpenMP/MPI, HDF5 & - \\[1ex]\hline
+ 
+\viztomotitle{}/\vizvisctitle & Intel F90/OpenMP, HDF5 & \paraviewtitle \\[1ex]\hline
+
+\exevtitle{} & Intel F90/OpenMP, HDF5 & \matlabtitle\\[1ex]\hline
+
+\skstitle{} & Intel F90, HDF5 & \matlabtitle{}, \paraviewtitle \\[1ex]\hline
+
+\psitomotitle{} & \juliatitle{} & \paraviewtitle{} \\[1ex]\hline
+
+\hline
+
+\end{tabular}
+
+\end{adjustbox}
+
+%\raggedright \footnotesize{$^1$ In \drexstitle, \textbf{ptmod} is set in the input file.}\\
+
+\label{table:compile}
+
+\end{table}
+
+\section{Installation}
+
+1) Clone the source code(s): \\
+
+\href{https://github.com/ecoman-geos/ECOMAN2.0-geodynamics.git}{\drexstitle{}, \drexmtitle{}, \exevtitle{}, \viztomotitle{}, \vizvisctitle}: \\
+\texttt{git clone https://github.com/ecoman-geos/ECOMAN2.0-geodynamics.git}\\*
+
+\href{https://github.com/ecoman-geos/ECOMAN2.0-seismology.SKS-SPLIT.git}{\skstitle{}}: \\
+\texttt{git clone https://github.com/ecoman-geos/ECOMAN2.0-seismology.SKS-SPLIT.git}\\*
+
+\href{https://github.com/ecoman-geos/ECOMAN2.0-seismology.PSI_D}{\psitomotitle{}}: \\
+\texttt{git clone https://github.com/ecoman-geos/ECOMAN2.0-seismology.PSI\_D.git}\\*
+
+2) To compile the F90 files, execute the \texttt{bash\_compile} file present in each software directory as \texttt{./bash\_compile}. The scripts should be compiled with the command \texttt{h5pfc} when the parallel HDF5 libraries are installed, or \texttt{h5fc} otherwise.\\
+
+3) To run the F90 executables, see files RUN or pbs\_*
+
+\section{Software dependencies}
+\drexmtitle{} requires velocity field(s) and time constraints from a geodynamic model. To scale the elastic tensors by the local (P,T) conditions, pressure and temperature fields need to be additionally provided. Velocity, pressure and temperature field(s) and time are stored in \texttt{vtp*.h5} files.  \\
+Software \viztomotitle{}, \vizvisctitle, \skstitle{} and \psitomotitle{} require the pre-computation of an elastic and/or deformation history model, and thus should be run after the execution of \drexmtitle{} (see Fig. \ref{fig:flowchart}). However, \psitomotitle{} can also be used with real seismic datasets\\
+\vizvisctitle{} needs also the pre-computation of a database of viscous tensors through software \textbf{DEMviscous} included in directory \texttt{EXEV}.\\*
+
